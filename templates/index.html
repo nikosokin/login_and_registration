@@ -49,6 +49,9 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
+            {% if session['current_id'] != None %}
+            <p>{{session['current_id']}}</p>
+            {% endif %}
     </div>
     <div id="container">
         <h1>Login and Registration</h1>
@@ -91,6 +94,7 @@
                 <input type="text" name="password" class="inputText">
                 <br>
                 <input type="submit" value="Login" >
+                
             </form>
         </div>
 
