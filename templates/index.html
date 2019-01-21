@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Registration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="main.js"></script>
+    
 
     <style>
         .cols {
@@ -49,8 +49,9 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
+            
             {% if session['current_id'] != None %}
-            <p>{{session['current_id']}}</p>
+            <p>User {{session['current_id']}} is logged in.</p>
             {% endif %}
     </div>
     <div id="container">

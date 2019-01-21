@@ -77,6 +77,7 @@ def login():
     mysql = connectToMySQL('mydb')
     query = "SELECT * FROM people WHERE email = '%s';" % (request.form['email'])
     maybeId = mysql.query_db(query)
+    
     print(maybeId)
     if not maybeId:
         flash("doesn't exist")
@@ -89,11 +90,18 @@ def login():
         print(pw_hash)
 
         if bcrypt.check_password_hash(pw_hash[0]['password_hash'], request.form['password']):
-            flash("Logged In")
-            return redirect('/')
+            mysql = connectToMySQL('mydb')
+            query = "SELECT id FROM people WHERE email = '%s';" % (request.form['email'])
+            session['current_id'] = mysql.query_db(query)
+            return render_template('login.html')
         else:
             flash("bad")
             return redirect('/')
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    session['current_id'] = None
+    return redirect('/')
 
 
 
